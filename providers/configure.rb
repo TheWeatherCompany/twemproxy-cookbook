@@ -65,12 +65,12 @@ def configure
     )
   end
 
-  config_test unless new_resource.update_config == false
+#  config_test unless new_resource.update_config == false
 end
 
-def config_test
-  execute 'test_nutcracker_config' do
-    command "nutcracker --test-conf -c #{new_resource.config_dir}/nutcracker.yml"
-    returns 0
-  end
-end
+# def config_test
+#   execute 'test_nutcracker_config' do
+#     command "nutcracker --test-conf -c #{new_resource.config_dir}/nutcracker.yml"
+#     returns 0
+#   end
+# end

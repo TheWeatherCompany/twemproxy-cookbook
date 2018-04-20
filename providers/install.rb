@@ -25,31 +25,6 @@ end
 
 def install_compile_deps
   Chef::Log.info 'Installing build dependencies'
-
-  include_recipe 'build-essential::default'
-
-  # Required but not installed by build-essential
-  %w(
-    automake
-    libtool
-  ).each do |pkg|
-    package pkg  do
-      action :install
-    end
-  end
-
-  ark 'autoconf' do
-    url 'http://ftp.gnu.org/gnu/autoconf/autoconf-2.64.tar.gz'
-    path Chef::Config[:file_cache_path]
-    action :put
-    strip_components 1
-  end
-
-  execute 'Install autoconf' do
-    cwd "#{Chef::Config[:file_cache_path]}/autoconf"
-    command './configure && make && make install'
-    only_if { missing_autoconf_2_64? }
-  end
 end
 
 def download(url)
@@ -81,11 +56,6 @@ def install
     cwd "#{Chef::Config[:file_cache_path]}/twemproxy"
     command 'make install'
   end
-end
-
-def missing_autoconf_2_64?
-  cmd = shell_out!("autoconf --version | head -1 | awk -F ' ' '{print $4}'")
-  cmd.stdout.match('2.64').nil?
 end
 
 def twemproxy_version_installed?
