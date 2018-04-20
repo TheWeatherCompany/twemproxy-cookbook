@@ -1,13 +1,13 @@
 name             'twemproxy'
-maintainer       'Miguel Fonseca'
-maintainer_email 'miguel.fonseca@mindera.com'
+maintainer       'TWC Devops'
+maintainer_email 'ibm@ibm.com'
 license          'MIT'
 description      'Installs/Configures twemproxy'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.0'
+version          '0.1.1'
 
 supports 'centos'
 supports 'redhat'
 
-depends 'build-essential', '~> 2.2.3'
-depends 'ark', '~> 0.9.0'
+depends 'ark'
+depends 'build-essential'
